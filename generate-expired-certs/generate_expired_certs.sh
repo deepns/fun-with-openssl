@@ -34,9 +34,9 @@ generate_expired_cert_signed_by_root_ca()
         -CAcreateserial -out $NODE.crt
 }
 
-show_cert_validity()
+show_cert_expiration()
 {
-    echo "Validity of $1 certificate"
+    echo "Expiration dates of $1 certificate"
     $OPENSSL x509 -noout -startdate -enddate -in $1.crt
 }
 
@@ -65,5 +65,5 @@ NODE=$2
 
 generate_root_ca $ROOT_CA
 generate_expired_cert_signed_by_root_ca $ROOT_CA $NODE
-show_cert_validity $ROOT_CA
-show_cert_validity $NODE
+show_cert_expiration $ROOT_CA
+show_cert_expiration $NODE
